@@ -1,0 +1,24 @@
+/* Font recommendations:
+- Primary: 'Courier New', 'Monaco', 'Menlo' (monospace)
+- Alternative: 'JetBrains Mono', 'Fira Code', 'Source Code Pro'
+*/
+
+/* Color Palette:
+- Background: #0a0a0a (deep black)
+- Terminal: #1a1a1a (dark gray)
+- Primary text: #00ff00 (matrix green)
+- Secondary text: #33cc33 (lighter green)
+- Accent: #ffff00 (amber/yellow)
+- Error/disabled: #666666 (muted gray)
+- Window chrome: #333333 (medium gray)
+*/
+
+.home-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+}

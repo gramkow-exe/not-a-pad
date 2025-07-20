@@ -1,0 +1,121 @@
+.html-writer-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+}
+
+.html-editor-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.html-input-textarea {
+  background: transparent;
+  border: 1px solid #333333;
+  border-radius: 4px;
+  color: #00ff00;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 15px;
+  width: 100%;
+  height: 400px;
+  outline: none;
+  resize: none;
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+.html-input-textarea::placeholder {
+  color: #666666;
+  font-style: italic;
+}
+
+.html-input-textarea:focus {
+  border-color: #00ff00;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
+}
+
+.html-input-textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.html-input-textarea::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+.html-input-textarea::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+}
+
+.html-input-textarea::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+.html-output-container {
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 4px;
+  padding: 15px;
+  height: 400px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.html-output-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.html-output-container::-webkit-scrollbar-track {
+  background: #111111;
+}
+
+.html-output-container::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+}
+
+.html-output-container::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+.input-section,
+.output-section {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  overflow: auto;
+}
+
+@media (max-width: 768px) {
+  .html-writer-container {
+    padding: 10px;
+  }
+
+  .html-editor-layout {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .html-input-textarea,
+  .html-output-container {
+    height: 250px;
+    font-size: 13px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .html-input-textarea,
+  .html-output-container {
+    height: 200px;
+    font-size: 12px;
+    padding: 10px;
+  }
+}

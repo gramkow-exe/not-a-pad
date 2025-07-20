@@ -1,0 +1,104 @@
+.note-writer-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+}
+
+.editor-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.command-line {
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.note-writer-textarea {
+  background: transparent;
+  border: 1px solid #333333;
+  border-radius: 4px;
+  color: #00ff00;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 15px;
+  width: 100%;
+  flex: 1;
+  min-height: 400px;
+  outline: none;
+  resize: none;
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+.note-writer-textarea::placeholder {
+  color: #666666;
+  font-style: italic;
+}
+
+.note-writer-textarea:focus {
+  border-color: #00ff00;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
+}
+
+.note-writer-textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.note-writer-textarea::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+.note-writer-textarea::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+}
+
+.note-writer-textarea::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+.editor-status {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #333333;
+  text-align: right;
+}
+
+.status-text {
+  color: #666666;
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .note-writer-container {
+    padding: 10px;
+  }
+
+  .terminal-content {
+    padding: 15px;
+  }
+
+  .note-writer-textarea {
+    font-size: 13px;
+    padding: 12px;
+    min-height: 300px;
+  }
+
+  .command-line {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .note-writer-textarea {
+    font-size: 12px;
+    padding: 10px;
+    min-height: 250px;
+  }
+}
