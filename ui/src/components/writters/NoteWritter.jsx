@@ -1,16 +1,14 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function NoteWritter() {
-  const [note, setNote] = useState("");
+export function NoteWritter({ note = "", onChange = () => {} }) {
   const navigate = useNavigate();
 
   function handleClose() {
     navigate("/");
   }
 
-  function handleChangeNote(e) {
-    setNote(e.target.value);
+  function handleChange(e) {
+    onChange(e.target.value)
   }
 
   return (
@@ -33,7 +31,7 @@ export function NoteWritter() {
             <textarea
               className="note-writer-textarea"
               value={note}
-              onChange={handleChangeNote}
+              onChange={handleChange}
               placeholder="Start typing your note..."
               autoFocus
             />

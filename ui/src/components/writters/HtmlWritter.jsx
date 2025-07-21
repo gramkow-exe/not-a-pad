@@ -1,12 +1,14 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function HtmlWritter() {
-  const [html, setHtml] = useState("");
+function HtmlWritter({ html="", onChange = () => {} }) {
   const navigate = useNavigate();
 
   function handleClose() {
     navigate("/");
+  }
+
+  function handleChange(e) {
+    onChange(e.target.value)
   }
 
   return (
@@ -32,7 +34,7 @@ function HtmlWritter() {
               <div className="input-label">Raw HTML Input:</div>
               <textarea
                 value={html}
-                onChange={(e) => setHtml(e.target.value)}
+                onChange={handleChange}
                 className="html-input-textarea"
                 placeholder="<h1>Start typing your HTML here...</h1>"
               />

@@ -1,29 +1,29 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createNote } from "../../api/notes";
 export function Home() {
-  const [title, setTitle] = useState("");
-  const [template, setTemplate] = useState("note");
+  const [link, setLink] = useState("");
+  const [type, setType] = useState("note");
   const navigate = useNavigate()
 
-  function formatTitle() {
-    if (!title) return ""
-    return title
+  function formatLink() {
+    if (!link) return ""
+    return link
+        .trim()
         .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
         .replace(/([A-Z])([A-Z][a-z])/g, '$1_$2')
         .replace(/ +/g, "_")
         .toLowerCase();
   }
 
-  function handleCreateNote() {
+  async function handleCreateNote() {
     const payload = {
-      title: formatTitle(),
-      template: template
+      link: formatLink(),
+      type: type
     }
 
-
-    // if (title.trim()) {
-    //   navigate(`/${template}`)
-    // }
+    const response = await createNote(payload)
+    if (response) { navigate(`/note/${link}`)  }
   };
 
   return (
@@ -60,11 +60,11 @@ export function Home() {
               <label className="input-label"> Enter note title:</label>
               <input
                 type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={link}
+                onChange={(e) => setLink(e.target.value)}
                 className="terminal-input"
                 placeholder="my_awesome_note"
-                onBlur={() => setTitle(formatTitle(title))}
+                onBlur={() => setLink(formatLink(link))}
                 autoFocus
               />
             </div>
@@ -77,8 +77,8 @@ export function Home() {
                     type="radio"
                     name="template"
                     value="note"
-                    checked={template === "note"}
-                    onChange={(e) => setTemplate(e.target.value)}
+                    checked={type === "note"}
+                    onChange={(e) => setType(e.target.value)}
                   />
                   <span className="template-name">[TXT] Plain Text</span>
                   <span className="template-desc">Simple text document</span>
@@ -89,8 +89,8 @@ export function Home() {
                     type="radio"
                     name="template"
                     value="md"
-                    checked={template === "md"}
-                    onChange={(e) => setTemplate(e.target.value)}
+                    checked={type === "md"}
+                    onChange={(e) => setType(e.target.value)}
                   />
                   <span className="template-name">[MD] Markdown</span>
                   <span className="template-desc">
@@ -103,8 +103,8 @@ export function Home() {
                     type="radio"
                     name="template"
                     value="html"
-                    checked={template === "html"}
-                    onChange={(e) => setTemplate(e.target.value)}
+                    checked={type === "html"}
+                    onChange={(e) => setType(e.target.value)}
                   />
                   <span className="template-name">[HTML] Web Document</span>
                   <span className="template-desc">Rich HTML document</span>
@@ -116,7 +116,7 @@ export function Home() {
               <button
                 onClick={handleCreateNote}
                 className="create-button"
-                disabled={!title.trim()}
+                disabled={!link.trim()}
               >
                 <span className="button-text">[ CREATE_NOTE.exe ]</span>
               </button>

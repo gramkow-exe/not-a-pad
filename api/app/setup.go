@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gramkow-exe/not-a-pad/config"
@@ -24,6 +25,7 @@ func SetupAndRunApp() error {
 
 	// Attach Middlewares
 	app.Use(recover.New())
+	app.Use(cors.New())
 	app.Use(logger.New(logger.Config{
 		Format: "[${ip}]:${port} ${status} - ${method} ${path} ${latency}\n",
 	}))
