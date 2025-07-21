@@ -5,10 +5,25 @@ export function Home() {
   const [template, setTemplate] = useState("note");
   const navigate = useNavigate()
 
-  const handleCreateNote = () => {
-    if (title.trim()) {
-      navigate(`/${template}`)
+  function formatTitle() {
+    if (!title) return ""
+    return title
+        .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
+        .replace(/([A-Z])([A-Z][a-z])/g, '$1_$2')
+        .replace(/ +/g, "_")
+        .toLowerCase();
+  }
+
+  function handleCreateNote() {
+    const payload = {
+      title: formatTitle(),
+      template: template
     }
+
+
+    // if (title.trim()) {
+    //   navigate(`/${template}`)
+    // }
   };
 
   return (
@@ -49,6 +64,7 @@ export function Home() {
                 onChange={(e) => setTitle(e.target.value)}
                 className="terminal-input"
                 placeholder="my_awesome_note"
+                onBlur={() => setTitle(formatTitle(title))}
                 autoFocus
               />
             </div>

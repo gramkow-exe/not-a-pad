@@ -14,7 +14,7 @@ var (
 	user     = ""
 	password = ""
 	dbname	 = ""
-	db     *pgxpool.Pool
+	DB     *pgxpool.Pool
 )
 
 func loadCredencials() {
@@ -29,7 +29,7 @@ func connect() {
 	// Connect to de database
 	connStr := fmt.Sprintf("postgres://%s:%s@%s:%d/%s", user, password, host, port, dbname)
 	var err error
-	db, err = pgxpool.New(context.Background(), connStr)
+	DB, err = pgxpool.New(context.Background(), connStr)
 	if err != nil {
 		log.Fatalf("Failed to connect: %v", err)
 	}
@@ -37,7 +37,7 @@ func connect() {
 
 func testConnection() {
 	fmt.Printf("host= %s port= %d user= %s password= %s \n", host, port, user, password)
-	PrintQueryResult(db, "select * from notes")
+	PrintQueryResult(DB, "select * from notes")
 }
 
 func LoadDatabase() {
