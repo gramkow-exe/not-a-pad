@@ -2,19 +2,19 @@ FROM node:22-alpine AS build_image
 WORKDIR /app
 ENV VITE_CACHE_DIR=/app/.vite_cache
 
-COPY package.json yarn.lock ./
+COPY package.json package-lock.json ./
 RUN mkdir -p $VITE_CACHE_DIR
-RUN yarn
+RUN npm ci
 COPY . .
-RUN yarn build
+RUN npm run build
 
 FROM node:22-alpine AS production_image
 WORKDIR /app
 
 COPY --from=build_image /app/dist/ /app/dist/
 COPY --from=build_image /app/node_modules/ /app/node_modules/
-COPY package.json yarn.lock vite.config.js ./
+COPY package.json package-lock.json vite.config.js ./
 
 EXPOSE 3000
 
-CMD ["yarn", "preview"]
+CMD ["npm", "run", "preview"]
