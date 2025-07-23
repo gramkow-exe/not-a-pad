@@ -14,13 +14,37 @@ services:
       interval: 5s
       timeout: 3s
       retries: 5
+
   migrate:
-      image: migrate/migrate
-      volumes:
-        - ./db/migrations:/migrations
-      depends_on:
-        db:
-          condition: service_healthy
-      entrypoint: [ "migrate", "-path", "/migrations", "-database", "postgres://kayn:saveTh&M0l3s@db:5432/not-a-pad-db?sslmode=disable", "up" ]
-volumes:
-  db-data:
+    image: migrate/migrate
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./db/migrations:/migrations
+    entrypoint:
+      - migrate
+      - -path
+      - /migrations
+      - -database
+      - postgres://kayn:saveTh&M0l3s@db:5432/not-a-pad-db?sslmode=disable
+      - up
+
+  api:
+    build:
+      context: ./api
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    ports:
+      - "9090:9090"
+
+  ui:
+    build:
+      context: ./ui
+    depends_on:
+      - api
+      - migrate
+      - db
+    ports:
+      - "6969:6969"
