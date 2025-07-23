@@ -15,6 +15,6 @@ COPY --from=build_image /app/dist/ /app/dist/
 COPY --from=build_image /app/node_modules/ /app/node_modules/
 COPY package.json package-lock.json vite.config.js ./
 
-EXPOSE 3000
+EXPOSE 6969
 
 CMD ["npm", "run", "preview"]
