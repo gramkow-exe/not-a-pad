@@ -1,5 +1,5 @@
 # Etapa 1: Build
-FROM golang:1.22-alpine AS builder
+FROM golang:1.23-alpine AS builder
 
 # Instala dependências úteis
 RUN apk add --no-cache git
