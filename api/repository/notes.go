@@ -74,3 +74,20 @@ func UpdateContent(payload model.UpdateContentPayload) {
 		log.Fatal("Update failed:", err)
 	}
 }
+
+func DeleteByLink(link string) {
+	query := `
+		delete from notes
+		where link = $1
+	`
+
+	_, err := database.DB.Exec(
+		context.Background(),
+		query,
+		link,
+	)
+
+	if err != nil {
+		log.Fatal("Delete failed:", err)
+	}
+}

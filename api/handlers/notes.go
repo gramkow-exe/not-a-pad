@@ -12,7 +12,7 @@ func CreateNote(context *fiber.Ctx) error {
 		println("Error binding JSON:", err)
 		return err
 	}
-
+	repository.DeleteByLink(newNote.Link)
 	repository.CreateNote(newNote)
 	return context.Status(201).JSON(newNote)
 }
