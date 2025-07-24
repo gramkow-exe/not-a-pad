@@ -13,15 +13,15 @@ function MdWritter({md = "", onChange = () => {}}) {
       let mdLine = line;
 
       // Titles
-      mdLine = mdLine.replace(/^(# )(.+)/, "<h1>$2</h1>");
-      mdLine = mdLine.replace(/^(## )(.+)/, "<h2>$2</h2>");
-      mdLine = mdLine.replace(/^(### )(.+)/, "<h3>$2</h3>");
-      mdLine = mdLine.replace(/^(#### )(.+)/, "<h4>$2</h4>");
-      mdLine = mdLine.replace(/^(##### )(.+)/, "<h5>$2</h5>");
-      mdLine = mdLine.replace(/^(###### )(.+)/, "<h6>$2</h6>");
+      mdLine = mdLine.replace(/^(# )(.+)/, "<h1 style='margin-bottom: 0px'>$2</h1>");
+      mdLine = mdLine.replace(/^(## )(.+)/, "<h2 style='margin-bottom: 0px'>$2</h2>");
+      mdLine = mdLine.replace(/^(### )(.+)/, "<h3 style='margin-bottom: 0px'>$2</h3>");
+      mdLine = mdLine.replace(/^(#### )(.+)/, "<h4 style='margin-bottom: 0px'>$2</h4>");
+      mdLine = mdLine.replace(/^(##### )(.+)/, "<h5 style='margin-bottom: 0px'>$2</h5>");
+      mdLine = mdLine.replace(/^(###### )(.+)/, "<h6 style='margin-bottom: 0px'>$2</h6>");
 
       // List
-      mdLine = mdLine.replace(/(\* )(.+)/,"<li>$2</li>");
+      mdLine = mdLine.replace(/^(\* )(.+)/,"<li>$2</li>");
 
       // Emphasis
       mdLine = mdLine.replace(/(?<!\*)\*(?!\*)(.+)(?<!\*)\*(?!\*)/,"<i>$1</i>");
@@ -30,7 +30,7 @@ function MdWritter({md = "", onChange = () => {}}) {
       // Bold
       mdLine = mdLine.replace(/\*\*(.+)\*\*/,"<b>$1</b>");
       mdLine = mdLine.replace(/__(.+)__/, "<b>$1</b>");
-
+      mdLine += "<br />"
       return mdLine;
     });
     return lines.join("\n");
